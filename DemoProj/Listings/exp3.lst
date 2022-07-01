@@ -1,0 +1,56 @@
+
+
+
+ARM Macro Assembler    Page 1 EVENorODD
+
+
+    1 00000000                 TTL              EVENorODD
+    2 00000000                 AREA             PROGRAM, CODE, READONLY
+    3 00000000         
+    4 00000000 E59F0008        LDR              R0, NUM
+    5 00000004 E3A01001        MOV              R1, #1
+    6 00000008         
+    7 00000008 E0002001        AND              R2, R0, R1
+    8 0000000C E50F2002        STR              R2, RESULT  ;IF RESULT = "1" th
+                                                            en it is odd and ev
+                                                            en if it's "0"
+    9 00000010         
+   10 00000010 24 00   NUM     DCW              &24
+   11 00000012 00 00   RESULT  DCW              0
+   12 00000014                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\exp3.d -o.\objects\exp3.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMS
+IS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine
+="__UVISION_VERSION SETA 524" --list=.\listings\exp3.lst exp3.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+NUM 00000010
+
+Symbol: NUM
+   Definitions
+      At line 10 in file exp3.s
+   Uses
+      At line 4 in file exp3.s
+Comment: NUM used once
+PROGRAM 00000000
+
+Symbol: PROGRAM
+   Definitions
+      At line 2 in file exp3.s
+   Uses
+      None
+Comment: PROGRAM unused
+RESULT 00000012
+
+Symbol: RESULT
+   Definitions
+      At line 11 in file exp3.s
+   Uses
+      At line 8 in file exp3.s
+Comment: RESULT used once
+3 symbols
+335 symbols in table

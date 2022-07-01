@@ -1,0 +1,106 @@
+
+
+
+ARM Macro Assembler    Page 1 QUESTION2
+
+
+    1 00000000                 TTL              QUESTION2
+    2 00000000                 AREA             PROGRAM, CODE, READONLY
+    3 00000000         
+    4 00000000 E59F0040 
+                       Main    LDR              R0, LIST    ;loading the addres
+                                                            s of the list
+    5 00000004 E3A03004        MOV              R3, #4      ;no. of loops
+    6 00000008 E3A0600C        MOV              R6, #12     ;shift by
+    7 0000000C         
+    8 0000000C E4901004 
+                       LOOP    LDR              R1, [R0], #4 
+                                                            ;loading from list 
+                                                            
+    9 00000010 E3A0200F        MOV              R2, #&0F    ;AND with 0000 1111
+                                                             to get low nibble
+   10 00000014 E0011002        AND              R1, R1, R2
+   11 00000018 E1A01611        MOV              R1, R1, LSL R6 ;shift operation
+                                                            
+   12 0000001C E0855001        ADD              R5, R5, R1
+   13 00000020 E2466004        SUB              R6, R6, #4
+   14 00000024 E2533001        SUBS             R3, R3, #1
+   15 00000028 1AFFFFF7        BNE              LOOP
+   16 0000002C         
+   17 0000002C E58F5010        STR              R5, RESULT
+   18 00000030 EF000011        SWI              &11
+   19 00000034         
+   20 00000034         
+   21 00000034 0000001C 
+                       Start   DCD              &1C
+   22 00000038 00000005        DCD              &05
+   23 0000003C 00000036        DCD              &36         ;RESULT = 0x0000C56
+                                                            8
+   24 00000040 00000028        DCD              &28
+   25 00000044         
+   26 00000044         
+   27 00000044 00000000 
+                       RESULT  DCD              0
+   28 00000048 00000000 
+                       LIST    DCD              Start
+   29 0000004C                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\exp2.d -o.\objects\exp2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMS
+IS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine
+="__UVISION_VERSION SETA 524" --list=.\listings\exp2.lst exp2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+LIST 00000048
+
+Symbol: LIST
+   Definitions
+      At line 28 in file exp2.s
+   Uses
+      At line 4 in file exp2.s
+Comment: LIST used once
+LOOP 0000000C
+
+Symbol: LOOP
+   Definitions
+      At line 8 in file exp2.s
+   Uses
+      At line 15 in file exp2.s
+Comment: LOOP used once
+Main 00000000
+
+Symbol: Main
+   Definitions
+      At line 4 in file exp2.s
+   Uses
+      None
+Comment: Main unused
+PROGRAM 00000000
+
+Symbol: PROGRAM
+   Definitions
+      At line 2 in file exp2.s
+   Uses
+      None
+Comment: PROGRAM unused
+RESULT 00000044
+
+Symbol: RESULT
+   Definitions
+      At line 27 in file exp2.s
+   Uses
+      At line 17 in file exp2.s
+Comment: RESULT used once
+Start 00000034
+
+Symbol: Start
+   Definitions
+      At line 21 in file exp2.s
+   Uses
+      At line 28 in file exp2.s
+Comment: Start used once
+6 symbols
+338 symbols in table

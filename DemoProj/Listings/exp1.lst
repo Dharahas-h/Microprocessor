@@ -1,0 +1,69 @@
+
+
+
+ARM Macro Assembler    Page 1 FACTORIAL
+
+
+    1 00000000                 TTL              FACTORIAL
+    2 00000000                 AREA             PROGRAM, CODE, READONLY
+    3 00000000         
+    4 00000000 E59F0018        LDR              R0, NUM     ;Input 
+    5 00000004 E3A01001        MOV              R1, #1
+    6 00000008         
+    7 00000008 E0020091 
+                       loop    MUL              R2, R1, R0
+    8 0000000C E1A01002        MOV              R1, R2      ;Moving result back
+                                                             to R1
+    9 00000010 E2500001        SUBS             R0, R0, #1
+   10 00000014 1AFFFFFB        BNE              loop
+   11 00000018         
+   12 00000018 E58F1002        STR              R1, RESULT
+   13 0000001C EF000011        SWI              &11
+   14 00000020         
+   15 00000020 04 00   NUM     DCW              &4
+   16 00000022 00 00   RESULT  DCW              0
+   17 00000024                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\exp1.d -o.\objects\exp1.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMS
+IS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine
+="__UVISION_VERSION SETA 524" --list=.\listings\exp1.lst exp1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+NUM 00000020
+
+Symbol: NUM
+   Definitions
+      At line 15 in file exp1.s
+   Uses
+      At line 4 in file exp1.s
+Comment: NUM used once
+PROGRAM 00000000
+
+Symbol: PROGRAM
+   Definitions
+      At line 2 in file exp1.s
+   Uses
+      None
+Comment: PROGRAM unused
+RESULT 00000022
+
+Symbol: RESULT
+   Definitions
+      At line 16 in file exp1.s
+   Uses
+      At line 12 in file exp1.s
+Comment: RESULT used once
+loop 00000008
+
+Symbol: loop
+   Definitions
+      At line 7 in file exp1.s
+   Uses
+      At line 10 in file exp1.s
+Comment: loop used once
+4 symbols
+336 symbols in table

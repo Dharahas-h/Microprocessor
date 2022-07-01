@@ -1,0 +1,36 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega8"</DEVICE>
+ <WORKING_DIR>F:\Microprocessor\LAB 2\Lab2as\Lab2as\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m8def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\Debug\Lab2as.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Lab2as.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Lab2as.map</FILE>
+  <FILE>Lab2as.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <reset><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>11</LINE></reset>
+  <int0_ISR><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>59</LINE></int0_ISR>
+  <int1_ISR><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>40</LINE></int1_ISR>
+  <ind_loop><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>38</LINE></ind_loop>
+  <L3><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>46</LINE></L3>
+  <L2><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>47</LINE></L2>
+  <L1><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>48</LINE></L1>
+  <C1><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>64</LINE></C1>
+  <A2><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>68</LINE></A2>
+  <A1><FILE>F:\Microprocessor\LAB 2\Lab2as\Lab2as\main.asm</FILE><LINE>69</LINE></A1>
+ </LABELS>
+</ASSEMBLER_INFO>

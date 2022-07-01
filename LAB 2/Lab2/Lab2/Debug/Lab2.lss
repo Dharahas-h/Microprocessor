@@ -1,0 +1,188 @@
+
+Lab2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000ba  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000010e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000010e  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000140  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  0000017c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000060b  00000000  00000000  000001ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000055c  00000000  00000000  000007b7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002af  00000000  00000000  00000d13  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000074  00000000  00000000  00000fc4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000002fa  00000000  00000000  00001038  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000153  00000000  00000000  00001332  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  00001485  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	44 c0       	rjmp	.+136    	; 0x8c <__vector_1>
+   4:	19 c0       	rjmp	.+50     	; 0x38 <__vector_2>
+   6:	17 c0       	rjmp	.+46     	; 0x36 <__bad_interrupt>
+   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
+   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
+   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
+   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
+  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
+  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
+  14:	10 c0       	rjmp	.+32     	; 0x36 <__bad_interrupt>
+  16:	0f c0       	rjmp	.+30     	; 0x36 <__bad_interrupt>
+  18:	0e c0       	rjmp	.+28     	; 0x36 <__bad_interrupt>
+  1a:	0d c0       	rjmp	.+26     	; 0x36 <__bad_interrupt>
+  1c:	0c c0       	rjmp	.+24     	; 0x36 <__bad_interrupt>
+  1e:	0b c0       	rjmp	.+22     	; 0x36 <__bad_interrupt>
+  20:	0a c0       	rjmp	.+20     	; 0x36 <__bad_interrupt>
+  22:	09 c0       	rjmp	.+18     	; 0x36 <__bad_interrupt>
+  24:	08 c0       	rjmp	.+16     	; 0x36 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+  32:	36 d0       	rcall	.+108    	; 0xa0 <main>
+  34:	40 c0       	rjmp	.+128    	; 0xb6 <_exit>
+
+00000036 <__bad_interrupt>:
+  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+
+00000038 <__vector_2>:
+#include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
+
+ISR (INT1_vect)
+{
+  38:	1f 92       	push	r1
+  3a:	0f 92       	push	r0
+  3c:	0f b6       	in	r0, 0x3f	; 63
+  3e:	0f 92       	push	r0
+  40:	11 24       	eor	r1, r1
+  42:	2f 93       	push	r18
+  44:	8f 93       	push	r24
+  46:	9f 93       	push	r25
+  48:	ef 93       	push	r30
+  4a:	ff 93       	push	r31
+	int i;
+	for (i=1;i<=10;i++) // for 10 times LED blink
+  4c:	81 e0       	ldi	r24, 0x01	; 1
+  4e:	90 e0       	ldi	r25, 0x00	; 0
+  50:	10 c0       	rjmp	.+32     	; 0x72 <__SREG__+0x33>
+
+	{
+		PORTB=1;
+  52:	21 e0       	ldi	r18, 0x01	; 1
+  54:	28 bb       	out	0x18, r18	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  56:	e7 ea       	ldi	r30, 0xA7	; 167
+  58:	f1 e6       	ldi	r31, 0x61	; 97
+  5a:	31 97       	sbiw	r30, 0x01	; 1
+  5c:	f1 f7       	brne	.-4      	; 0x5a <__SREG__+0x1b>
+  5e:	00 c0       	rjmp	.+0      	; 0x60 <__SREG__+0x21>
+  60:	00 00       	nop
+		_delay_ms(100);   // delay of 1 sec
+		PORTB=0;
+  62:	18 ba       	out	0x18, r1	; 24
+  64:	e7 ea       	ldi	r30, 0xA7	; 167
+  66:	f1 e6       	ldi	r31, 0x61	; 97
+  68:	31 97       	sbiw	r30, 0x01	; 1
+  6a:	f1 f7       	brne	.-4      	; 0x68 <__SREG__+0x29>
+  6c:	00 c0       	rjmp	.+0      	; 0x6e <__SREG__+0x2f>
+  6e:	00 00       	nop
+#include <avr/interrupt.h>
+
+ISR (INT1_vect)
+{
+	int i;
+	for (i=1;i<=10;i++) // for 10 times LED blink
+  70:	01 96       	adiw	r24, 0x01	; 1
+  72:	8b 30       	cpi	r24, 0x0B	; 11
+  74:	91 05       	cpc	r25, r1
+  76:	6c f3       	brlt	.-38     	; 0x52 <__SREG__+0x13>
+		_delay_ms(100);   // delay of 1 sec
+		PORTB=0;
+		_delay_ms(100);
+		
+	}
+}
+  78:	ff 91       	pop	r31
+  7a:	ef 91       	pop	r30
+  7c:	9f 91       	pop	r25
+  7e:	8f 91       	pop	r24
+  80:	2f 91       	pop	r18
+  82:	0f 90       	pop	r0
+  84:	0f be       	out	0x3f, r0	; 63
+  86:	0f 90       	pop	r0
+  88:	1f 90       	pop	r1
+  8a:	18 95       	reti
+
+0000008c <__vector_1>:
+
+ISR (INT0_vect)
+{
+  8c:	1f 92       	push	r1
+  8e:	0f 92       	push	r0
+  90:	0f b6       	in	r0, 0x3f	; 63
+  92:	0f 92       	push	r0
+  94:	11 24       	eor	r1, r1
+	
+}
+  96:	0f 90       	pop	r0
+  98:	0f be       	out	0x3f, r0	; 63
+  9a:	0f 90       	pop	r0
+  9c:	1f 90       	pop	r1
+  9e:	18 95       	reti
+
+000000a0 <main>:
+{
+	//Set the input/output pins appropriately
+	//To enable interrupt and port interfacing
+	//For LED to blink
+	          //Set appropriate data direction for D
+	DDRB=1;   //Make PB0 as output
+  a0:	81 e0       	ldi	r24, 0x01	; 1
+  a2:	87 bb       	out	0x17, r24	; 23
+	MCUCR=0;  //Set MCUCR to level triggered
+  a4:	15 be       	out	0x35, r1	; 53
+	GICR=128;
+  a6:	80 e8       	ldi	r24, 0x80	; 128
+  a8:	8b bf       	out	0x3b, r24	; 59
+	DDRD=8;    //Enable interrupt 1
+  aa:	88 e0       	ldi	r24, 0x08	; 8
+  ac:	81 bb       	out	0x11, r24	; 17
+	PORTD=8;
+  ae:	82 bb       	out	0x12, r24	; 18
+	DDRD=0;
+  b0:	11 ba       	out	0x11, r1	; 17
+	sei();       // global interrupt flag
+  b2:	78 94       	sei
+  b4:	ff cf       	rjmp	.-2      	; 0xb4 <main+0x14>
+
+000000b6 <_exit>:
+  b6:	f8 94       	cli
+
+000000b8 <__stop_program>:
+  b8:	ff cf       	rjmp	.-2      	; 0xb8 <__stop_program>
